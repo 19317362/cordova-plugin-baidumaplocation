@@ -21,13 +21,13 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
         id="cordova-plugin-baidumaplocation"
-        version="4.0.3">
+        version="4.0.5">
     <name>BadiduMap Location</name>
     <description>Cordova Geolocation Plugin,use Baidu Map SDK</description>
     <license>Apache 2.0</license>
     <keywords>cordova,baidu,location,geolocation</keywords>
-    <repo>https://github.com/aruis/cordova-plugin-baidumaplocation</repo>
-    <issue>https://github.com/aruis/cordova-plugin-baidumaplocation/issues</issue>
+    <repo>https://github.com/19317362/cordova-plugin-baidumaplocation</repo>
+    <issue>https://github.com/19317362/cordova-plugin-baidumaplocation/issues</issue>
     
     <engines>
         <engine name="cordova-android" version=">=5.0.0" />
@@ -71,6 +71,8 @@
             <uses-permission android:name="android.permission.INTERNET"/>
             <!-- SD卡读取权限，用户写入离线定位数据-->
             <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
+            <!-- android 9.0上使用前台服务，需要添加权限 -->
+            <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
         </config-file>
 
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
