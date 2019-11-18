@@ -17,9 +17,9 @@
   specific language governing permissions and limitations
   under the License.
 -->
-
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<plugin
+    xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
         id="cordova-plugin-baidumaplocation"
         version="4.0.5">
     <name>BadiduMap Location</name>
@@ -28,22 +28,18 @@
     <keywords>cordova,baidu,location,geolocation</keywords>
     <repo>https://github.com/19317362/cordova-plugin-baidumaplocation</repo>
     <issue>https://github.com/19317362/cordova-plugin-baidumaplocation/issues</issue>
-    
     <engines>
         <engine name="cordova-android" version=">=5.0.0" />
     </engines>
-
     <js-module src="www/baidumap_location.js" name="baidumap_location">
         <clobbers target="cordova.plugins.baidumap_location" />
         <clobbers target="plugin.baidumap_location" />
         <clobbers target="baidumap_location"/>
     </js-module>
-
     <preference name="ANDROID_KEY" default=""/>
     <preference name="IOS_KEY" default=""/>
     <preference name="IOS_LOCATION_DESC" default="获取用户当前位置"/>
     <preference name="IOS_ALWAYS_LOCATION_DESC" default="持续获取地理位置"/>
-
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
@@ -51,7 +47,6 @@
                 <param name="android-package" value="com.aruistar.cordova.baidumap.BaiduMapLocation"/>
             </feature>
         </config-file>
-
         <config-file target="AndroidManifest.xml" parent="/*">
             <!-- 这个权限用于进行网络定位-->
             <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
@@ -74,19 +69,16 @@
             <!-- android 9.0上使用前台服务，需要添加权限 -->
             <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
         </config-file>
-
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
             <!-- 在application标签中声明service组件,每个app拥有自己单独的定位service -->
             <service
                     android:name="com.baidu.location.f"
                     android:enabled="true"
-                    android:process=":remote">
-            </service>
+                    android:process=":remote"></service>
             <meta-data android:name="com.baidu.lbsapi.API_KEY" android:value="$ANDROID_KEY"/>
         </config-file>
-        
         <framework src="src/android/BaiduMapLocation.gradle" custom="true" type="gradleReference"/>
-        <source-file src="src/android/BaiduMapLocation.java" target-dir="app/src/com/aruistar/cordova/baidumap"/>
+        <source-file src="src/android/BaiduMapLocation.java" target-dir="src/com/aruistar/cordova/baidumap"/>
         <source-file src="libs/android/armeabi/libindoor.so" target-dir="app/libs/armeabi"/>
         <source-file src="libs/android/armeabi/liblocSDK8a.so" target-dir="app/libs/armeabi"/>
         <source-file src="libs/android/armeabi-v7a/libindoor.so" target-dir="app/libs/armeabi-v7a"/>
@@ -99,7 +91,6 @@
         <source-file src="libs/android/x86_64/liblocSDK8a.so" target-dir="app/libs/x86_64"/>
         <source-file src="libs/android/BaiduLBS_Android.jar" target-dir="app/libs"/>
     </platform>
-
     <!--ios-->
     <platform name="ios">
         <config-file parent="/*" target="config.xml">
@@ -107,7 +98,6 @@
                 <param name="ios-package" value="BaiduMapLocation"/>
             </feature>
         </config-file>
-
         <!--为了能够在iOS9中正常使用非HTTPS协议-->
         <config-file parent="NSAppTransportSecurity" target="*-Info.plist">
             <dict>
@@ -115,7 +105,6 @@
                 <true/>
             </dict>
         </config-file>
-
         <!--定位模式 TODO 设置为前后台永远定位-->
         <!--NSLocationAlwaysUsageDescription / NSLocationWhenInUseUsageDescription-->
         <config-file parent="NSLocationWhenInUseUsageDescription" target="*-Info.plist">
@@ -124,7 +113,6 @@
         <config-file parent="NSLocationAlwaysUsageDescription" target="*-Info.plist">
             <string>$IOS_ALWAYS_LOCATION_DESC</string>
         </config-file>
-
         <!--API_KEY-->
         <config-file parent="BaiduMapLocation" target="*-Info.plist">
             <dict>
@@ -132,22 +120,18 @@
                 <string>$IOS_KEY</string>
             </dict>
         </config-file>
-
         <!--源文件-->
         <header-file src="src/ios/BaiduMapLocation.h"/>
         <source-file src="src/ios/BaiduMapLocation.mm"/>
-
         <!--库文件-->
         <framework src="libs/ios/BMKLocationKit.framework" custom="true"/>
         <source-file src="libs/ios/thirdlibs/libcrypto.a" framework="true"/>
         <source-file src="libs/ios/thirdlibs/libssl.a" framework="true"/>
-
         <framework src="CoreLocation.framework"/>
         <framework src="SystemConfiguration.framework"/>
         <framework src="libsqlite3.0.tbd"/>
         <framework src="CoreTelephony.framework"/>
-		<framework src="libc++.tbd"/>
-		<framework src="AdSupport.framework"/>
+        <framework src="libc++.tbd"/>
+        <framework src="AdSupport.framework"/>
     </platform>
-
 </plugin>
